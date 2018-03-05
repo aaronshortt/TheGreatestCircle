@@ -60,14 +60,21 @@ namespace TheGreatestCircle
         public float CalculateDistanceBetweenCoordinates(GeoCoordinate coordinateA, GeoCoordinate coordinateB)
         {
             //Returns distance in meters, divide by 1000 to get KM.
-            return (float)coordinateA.GetDistanceTo(coordinateB) / 1000;
+            try
+            {
+                return (float)coordinateA.GetDistanceTo(coordinateB) / 1000;
+            }catch (ArgumentOutOfRangeException ex)
+            {
+                throw new ArgumentOutOfRangeException("Latitude or longitude is out of range.");
+            }
+            
         }
 
         private float CalculateDistanceFromDublinOffice(GeoCoordinate candidateCoordinate)
         {
             //Returns distance in meters, divide by 1000 to get KM.
             GeoCoordinate dublinCoordinates = new GeoCoordinate(53.339428, -6.257664);
-            return (float)dublinCoordinates.GetDistanceTo(candidateCoordinate) / 1000;
+            return CalculateDistanceBetweenCoordinates(dublinCoordinates, candidateCoordinate);
         }
     }
 }

@@ -26,12 +26,13 @@ namespace TheGreatestCircle
             return "Customer Name: " + Name + "\t" + "Customer ID: " + "\t" + UserId;
         }
     }
-   
+
 
     public partial class Customer
     {
         public static Customer FromJson(string json) => JsonConvert.DeserializeObject<Customer>(json, TheGreatestCircle.Converter.Settings);
     }
+
 
     public static class Serialize
     {
