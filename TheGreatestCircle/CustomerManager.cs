@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Device.Location;
 using System.IO;
@@ -42,8 +43,20 @@ namespace TheGreatestCircle
                 {
                     while (!streamReader.EndOfStream)
                     {
-                        string json = streamReader.ReadLine();
-                        customers.Add(Customer.FromJson(json));
+                        try
+                        {
+                            string json = streamReader.ReadLine();
+                            customers.Add(Customer.FromJson(json));
+                        }
+                        catch (JsonSerializationException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+                        catch (JsonReaderException ex)
+                        {
+                            Console.WriteLine(ex.Message);
+                        }
+                        
                     }
                     streamReader.Close();
                 }

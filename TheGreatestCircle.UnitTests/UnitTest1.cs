@@ -61,5 +61,16 @@ namespace TheGreatestCircle.UnitTests
             Customer customer = Customer.FromJson(json);
             
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(JsonReaderException))]
+        public void Was_Not_Able_To_Parse_Json_to_Double()
+        {
+            string json = "{\"latitude\":\"bob\",\"user_id\": 12,\"name\":\"Christina McArdle\",\"longitude\":\"-6.043701\"]";
+
+            Customer customer = Customer.FromJson(json);
+        }
+
+
     }
 }
