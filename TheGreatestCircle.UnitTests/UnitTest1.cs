@@ -3,6 +3,7 @@ using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Device.Location;
+using Newtonsoft.Json;
 
 namespace TheGreatestCircle.UnitTests
 {
@@ -49,6 +50,16 @@ namespace TheGreatestCircle.UnitTests
             int id = (int)customer.UserId;
 
             Assert.AreEqual(id, 12);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(JsonReaderException))]
+        public void Was_Not_Able_To_Parse_JSON()
+        {
+            string json = "{\"latitude\":\"52.986375\",\"user_id\": 12,\"name\":\"Christina McArdle\",\"longitude\":\"-6.043701\"]";
+
+            Customer customer = Customer.FromJson(json);
+            
         }
     }
 }
