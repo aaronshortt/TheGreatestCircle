@@ -20,7 +20,13 @@ namespace TheGreatestCircle
 
         [JsonProperty("longitude")]
         public double Longitude { get; set; }
+
+        public override string ToString()
+        {
+            return "Customer Name: " + Name + "\t" + "Customer ID: " + "\t" + UserId;
+        }
     }
+   
 
     public partial class Customer
     {
