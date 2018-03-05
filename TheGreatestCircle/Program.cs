@@ -10,6 +10,7 @@ namespace TheGreatestCircle
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
